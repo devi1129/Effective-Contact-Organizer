@@ -37,7 +37,7 @@
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/devi1129/Effective-Contact-Organizer.git
-   ## Setup Database:
+
 
 1. Configure your database settings in `application.properties`.
 
