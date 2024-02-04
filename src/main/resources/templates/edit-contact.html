@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Contact</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+	rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/users.css}" rel="stylesheet">
+<link th:href="@{/css/edit-contact.css}" rel="stylesheet">
+
+<link th:href="@{/css/addcontact.css}" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+	integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<link rel="icon" type="image/x-icon" th:href="@{/img/favicon2.png}"  />
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+		<a class="navbar-brand" href="#" style="margin-left: 35px;">Effective Contact Organizer</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav" style="margin-left: auto; margin-right: 35px;">
+
+				<li class="nav-item"><span class="nav-link"
+					th:text="${user.name}"></span></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Log
+						Out</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+
+	<div class="sidebar" id="mysidebar">
+		<div class="closebtn">
+			<i onclick="togglebar()" class="fa-regular fa-circle-xmark"></i>
+		</div>
+		<a th:href="@{/users/profile}" class="item"><i class="fa-solid fa-user"></i>Your
+			profile</a> 
+			<a th:href="@{/users/view-contacts/0}" class="item"><i class="fa-regular fa-id-card"></i>View
+			Contacts</a> 
+			
+			<a th:href="@{/users/add-contact}" class="item"><i
+			class="fa-regular fa-pen-to-square"></i>Add Contact</a> <a th:href="@{/users/settings}"
+			class="item"><i class="fa-solid fa-gear"></i>Settings</a> <a th:href="@{/logout}"
+			class="item"><i class="fa-solid fa-right-from-bracket"></i> Log
+			Out</a>
+
+	</div>
+
+	<div id="main">
+		<i id="open" onclick="togglebar()" class="fa-solid fa-bars "></i>
+		<div class="form_wrapper">
+			<div class="form_container">
+				<div class="title_container">
+					<h2>Edit Contact</h2>
+				</div>
+				<div class="row clearfix">
+					<div class="">
+						<form method="post" role="form" th:action="@{'/users/updatecontact/' + ${currentpage}+'/'+${cid}}" th:object="${contact}" enctype="multipart/form-data">
+                          <div class="mt-2 mb-2 text-center">
+						<img class="profile_img"
+									th:src="@{'/contactprofiles/'+${contact.image}}"
+									alt="Profile Photo" />
+</div>
+							<div class="row clearfix">
+								<div class="col_half">
+									<div class="input_field">
+										<span><i aria-hidden="true" class="fa fa-user"></i></span> <input
+											type="text" th:field="*{firstname}" name="name"
+											placeholder="First Name" required />
+										<p th:if="${#fields.hasErrors('firstname')}"
+											class="text-danger" th:errors="*{firstname}"></p>
+									</div>
+								</div>
+								<div class="col_half">
+									<div class="input_field">
+										<span><i aria-hidden="true" class="fa fa-user"></i></span> <input
+											type="text" th:field="*{lastname}" name="name"
+											placeholder="Last Name" />
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class="input_field">
+								<span><i aria-hidden="true" class="fa fa-user"></i></span> <input
+									type="text" name="gender" th:field="*{gender}"
+									placeholder="Gender"  />
+							
+							</div>
+							<div class="input_field">
+								<span><i aria-hidden="true" class="fa fa-envelope"></i></span> <input
+									type="email" name="email" th:field="*{email}"
+									placeholder="Email" required />
+								<p th:if="${#fields.hasErrors('email')}" class="text-danger"
+									th:errors="*{email}"></p>
+							</div>
+							<div class="input_field">
+								<span><i aria-hidden="true" class="fa fa-phone"></i></span> <input
+									  type="number" name="phone"
+									th:field="*{phone}" placeholder="Phone Number" required />
+								<p th:if="${#fields.hasErrors('phone')}" class="text-danger"
+									th:errors="*{phone}"></p>
+							</div>
+							<div class="input_field">
+								<span><i aria-hidden="true" class="fa-solid fa-suitcase"></i></span>
+								<input type="text" name="work" th:field="*{work}"
+									placeholder="Profession" />
+							</div>
+
+							<div class="mt-3 mb-3">
+
+								<textarea id="mytextarea" class="form-control mt-3" rows="10"
+									style="height: 100%"
+									;
+							 placeholder="Enter a brief description (e.g., relationship, important details, etc.)"
+									th:field="*{description}"></textarea>
+
+							</div>
+							<div class="mb-3 mt-3">
+								<label for="formFile" class="form-label">Upload Image</label> <input
+									class="form-control" type="file" id="formFile"
+									name="profileimage">
+							</div>
+
+							<div class="text-center">
+								<button type="submit" class="btn mt-3"
+									style="color: white; background: #f5ba1a;">Update</button>
+							</div>
+
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<Script type="text/javascript" th:src="@{/js/users.js}"></Script>
+	<script
+		src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=vpi6vdpjb1isarbtfa33q1e9p157z7xz61b4cmn7rh4v5qf6"></script>
+	<script>
+		tinymce.init({
+			selector : '#mytextarea'
+		});
+	</script>
+</body>
+</html>

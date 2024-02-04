@@ -1,0 +1,30 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+#navbar {
+	position: sticky;
+	top: 0;
+	z-index:1000;
+}
+
+
+
+
+.banner
+{
+	width:100%;
+	height:93vh;
+	background:linear-gradient(rgb(0 0 0 / 36%),rgb(43 36 36 / 41%)),url(../img/homebg.jpg);
+	background-size:cover;
+	color:white;
+
+}
+#hometxt
+{
+	font-family: 'PT Sans Narrow', sans-serif;
+	
+}

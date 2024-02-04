@@ -1,0 +1,40 @@
+.card
+{
+	margin-left:6%;
+	margin-top:3%;
+	margin-right:6%;
+	
+	 font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  
+ border-radius:5px;
+  
+  
+
+ 
+  box-sizing: border-box;
+  padding: 15px;
+  position: relative;
+  z-index: 1;
+}
+.form-control 
+{
+  width: 40%;
+}
+
+
+
+#changepassword h5
+{
+	color:#0d6efd;
+}
+.field-icon {
+	float: right;
+	margin-right:605px;
+	margin-top:-25px;
+	
+	position: relative;
+	z-index: 2;
+	cursor: pointer;
+  }
+  

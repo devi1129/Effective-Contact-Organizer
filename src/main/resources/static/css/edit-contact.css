@@ -1,0 +1,11 @@
+ 
+img
+{ 
+ width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 10px auto;
+  border: 5px solid #ccc;
+  border-radius: 50%;
+  
+}

@@ -1,0 +1,110 @@
+.sidebar
+{
+	width:20%;
+	height:100%;
+	background-color:#f8f9fa;
+	position:fixed;
+	padding-top:45px;
+	
+	
+}
+.navbar
+{
+	background-color:#f8f9fa;
+	color:black;
+}
+#username
+{
+	color:black;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+  
+  margin-left:20%;
+}
+
+.sidebar a
+{
+	display:block;
+	text-decoration:none;
+	margin:10px 40px;
+	color:black;
+   margin:2rem;
+   	padding:0.6rem 0.6rem;
+    width: calc(100% - 80px); /* Adjusted width to accommodate margins */
+    box-sizing: border-box; 
+}
+@media screen and (max-width:1140px ) and (min-width:700px) {
+ 
+.sidebar
+{
+	width:40%;
+	
+	
+	
+}
+#main
+{
+	margin-left:40%;
+}
+}
+
+
+.sidebar a:hover
+{
+	background-color:#525CEB;
+	
+
+	color:white;
+	border-radius:10px;
+	
+}
+
+.sidebar a i
+{
+	
+	margin:0.5rem;
+}
+#open {
+  font-size: 10px;
+            cursor: pointer;
+            background-color: #000000;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+      
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 20px;
+  margin-left: 50px;
+  cursor:pointer;
+}
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    display: none;
+  
+ 
+  }
+  #main {
+    margin-left: 0%;
+  }
+  #main i {
+    display: inline;
+  }
+  
+}
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  background: #f2f2f2;
+}

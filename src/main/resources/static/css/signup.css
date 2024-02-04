@@ -1,0 +1,20 @@
+.card
+{
+	 border-top: 5px solid #f5ba1a;
+	 font-family: 'Lato', sans-serif;
+	   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+	
+}
+.container
+{
+	 margin-left:28rem;
+	 margin-right:28rem;
+}
+.field-icon {
+	float: right;
+	margin-right:4px;
+	margin-top:-25px;
+	position: relative;
+	z-index: 2;
+	cursor: pointer;
+  }

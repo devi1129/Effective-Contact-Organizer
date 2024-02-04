@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Example</title>
+</head>
+
+<body>
+    <div style="text-align: center;" >
+        <img src="cid:logo" alt="Header Image" style="width:100%; max-width:600px;">
+    </div>
+
+    <p >
+        Hi <b th:text="${nameuser}"></b>
+        <br>
+        <br>
+        Reset your password by clicking the following link: <a th:href="${resetLink}"><span th:text="${resetLink}"></span></a>
+        <br>
+        If you don't want to reset your password, please ignore this message. Your password will not be reset.
+        <br>
+        If you have any concerns, simply reply to this email.
+    </p>
+    
+    <br>
+    <br>
+    
+    <h3>Thank You</h3>
+    
+</body>
+
+</html>
+
+
+
