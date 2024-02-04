@@ -43,7 +43,7 @@
 
 ## Run the Application:
 
-1. Execute the main class `SmartContactManagerApplication.java`.
+1. Execute the main class `EffectiveContactOrganizerApplication.java`.
 
 ## Access the Application:
 
