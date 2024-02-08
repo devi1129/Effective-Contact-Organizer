@@ -122,6 +122,8 @@ public class MessageController {
     		{
     			 java.util.List<String> messages = validator.getMessages(result);
     			 redirectAttributes.addFlashAttribute("criteriaMessages", messages);
+    			 redirectAttributes.addFlashAttribute("newpassword",newpassword);
+    			 redirectAttributes.addFlashAttribute("confirmpassword",confirmpassword);
  	        
  	           return "redirect:/reset-password?token=" + token;
 
@@ -129,7 +131,8 @@ public class MessageController {
     	}
     	else {
     		  redirectAttributes.addFlashAttribute("error", "Password does not match");
-  	        
+    		  redirectAttributes.addFlashAttribute("newpassword",newpassword);
+ 			 redirectAttributes.addFlashAttribute("confirmpassword",confirmpassword);
     		
     		 return "redirect:/reset-password?token=" + token;
 

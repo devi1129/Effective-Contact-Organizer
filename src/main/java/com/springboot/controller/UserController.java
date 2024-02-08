@@ -50,7 +50,7 @@ public class UserController {
 
 		m.addAttribute("title", "Login Page");
 	
-
+		
 		return "login";
 	}
 	

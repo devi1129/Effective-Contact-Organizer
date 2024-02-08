@@ -78,7 +78,7 @@
 
 						<div class="form-group mt-3 mb-3">
 							<label for="oldpassword" class="mb-1">Enter Old Password</label>
-							<input type="password" class="form-control password"
+							<input type="password" class="form-control password" th:value="${oldpassword}"
 								id="oldpassword" name="oldpassword" placeholder="Old Password">
 							<i class="fa fa-eye-slash field-icon " id="toggleold"></i> <span
 								th:if="${error}" class="text-danger" th:text="${error}"></span>
@@ -86,7 +86,7 @@
 
 						<div class="form-group mt-3 mb-4">
 							<label for="newpassword" class="mb-1">Enter New Password</label>
-							<input type="password" class="form-control password"
+							<input type="password" class="form-control password" th:value="${newpassword}"
 								id="newpassword" placeholder="New Password" name="newpassword">
 							<i class="fa fa-eye-slash field-icon " id="togglenew"></i>
 							<ul th:if="${criteriaMessages}" class="text-danger">
@@ -123,7 +123,6 @@
 
 
 	<script type="text/javascript" th:src="@{/js/settings.js}"></script>
-
 
 
 

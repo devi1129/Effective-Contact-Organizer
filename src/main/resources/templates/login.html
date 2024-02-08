@@ -78,12 +78,13 @@
 							th:text="${success}"></div>
 					<div class="mb-3">
 						<label for="username">Email address</label> <input name="username"
-							type="email" class="form-control" id="username" th:value="${username}"
+						
+							type="email" class="form-control" id="username" th:value="${session.username}" 
 							aria-describedby="emailHelp" placeholder="Enter email">
 
 					</div>
 					<div class="mb-3">
-						<label for="password">Password</label> <input name="password"
+						<label for="password">Password</label> <input name="password" th:value="${session.password}" 
 							type="password" class="form-control" id="password"
 							placeholder="Password"> <i
 							class="fa fa-eye-slash field-icon " id="togglepass"></i>
@@ -108,6 +109,10 @@
 		</div>
 	</div>
 	<script type="text/javascript" th:src="@{/js/login.js}"></script>
+	
+	
+	
+
 
 </body>
 </html>

@@ -44,7 +44,7 @@ public class Emailserviceimpl implements EmailService {
 	        mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 	        mimeMessageHelper.setFrom(sender);
 	        mimeMessageHelper.setTo(recipient);
-	        mimeMessageHelper.setSubject("Password Reset Mail from Effecient Contact Organizer");
+	        mimeMessageHelper.setSubject("Password Reset Mail from Effective Contact Organizer");
 
 	        // Read the Thymeleaf HTML template
 //	        ClassPathResource resource = new ClassPathResource("templates/email.html");

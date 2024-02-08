@@ -38,7 +38,14 @@ public class SpringSecurityconfig {
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(
 						(authorize) -> authorize.requestMatchers("/user/**").authenticated().anyRequest().permitAll())
-				.formLogin(form -> form.loginPage("/signin").defaultSuccessUrl("/users/profile"));
+				.formLogin(form -> form.loginPage("/signin").defaultSuccessUrl("/users/profile").failureHandler((request, response, exception) -> {
+				    String username = request.getParameter("username");
+                    String password = request.getParameter("password");
+                    request.getSession().setAttribute("username", username);
+                    request.getSession().setAttribute("password", password);
+                    request.getSession().setAttribute("errorMsg", "Invalid username or password.");
+                    response.sendRedirect("/signin?error");
+                }));
 
 		return http.build();
 	}

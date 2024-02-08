@@ -81,12 +81,16 @@ public class SettingsController {
 		if(!matched)
 		{
 			   m.addAttribute("error", "Invalid Old Password");
+			   m.addAttribute("oldpassword",oldpassword);
+			   m.addAttribute("newpassword",newpassword);
 			   return "settings";
 		}
 		else if(!result.isValid())
 		{
 			  java.util.List<String> messages = validator.getMessages(result);
 	            m.addAttribute("criteriaMessages", messages);
+	            m.addAttribute("oldpassword",oldpassword);
+				   m.addAttribute("newpassword",newpassword);
 
 	           
 	            return "settings";
