@@ -54,7 +54,7 @@ public class Userdetails {
 private String resettoken;
 	private String about;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private List<Contact> contacts;
 
 }

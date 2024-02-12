@@ -21,6 +21,7 @@ import com.springboot.emailutils.EmailService;
 import com.springboot.entity.Contact;
 import com.springboot.entity.Userdetails;
 import com.springboot.exception.Emailalreadyexistsexception;
+import com.springboot.exception.Phonenumberalreadyexist;
 import com.springboot.repositry.Contactrepositry;
 import com.springboot.repositry.Userrepositry;
 import com.springboot.service.Serviceinterface;
@@ -94,11 +95,18 @@ public class Serviceimpl implements Serviceinterface {
 
 	@Override
 	public void savecontact(Contact contact, Userdetails u, MultipartFile file) {
-		Contact c = cr.findByEmail(contact.getEmail());
+		Contact existingContact = cr.findByEmailAndUser(contact.getEmail(), u);
+		
+		Contact existingphone = cr.findByPhoneAndUser(contact.getPhone(), u);
 
-		if (c != null && c.getEmail().equals(contact.getEmail())) {
-			throw new Emailalreadyexistsexception("Email already exists");
-		}
+	    if (existingContact != null) {
+	        throw new Emailalreadyexistsexception("Email already exists for another Contact");
+	    }
+	    
+	    if (existingphone!= null) {
+	        throw new Phonenumberalreadyexist("Phone Number already exists for another Contact");
+	    }
+
 
 		if (file.isEmpty()) {
 			contact.setImage("contact.png");
@@ -127,12 +135,17 @@ public class Serviceimpl implements Serviceinterface {
 	@Override
 	public void updatecontact(Contact updatedContact, Userdetails user, MultipartFile file, Long cid) {
 		// Fetch the existing contact details from the database
-		Contact duplicateContact = cr.findByEmail(updatedContact.getEmail());
+		Contact duplicateContact = cr.findByEmailAndUser(updatedContact.getEmail(),user);
 		Contact existingContact = cr.findById(cid).get();
-
+		Contact duplicatephone = cr.findByPhoneAndUser(updatedContact.getPhone(),user);
 		if (duplicateContact != null && duplicateContact.getEmail().equals(updatedContact.getEmail())
 				&& duplicateContact.getCid() != cid) {
 			throw new Emailalreadyexistsexception("Email already exists for another contact");
+		}
+		
+		if (duplicatephone != null && duplicatephone.getPhone().equals(updatedContact.getPhone())
+				&& duplicatephone.getCid() != cid) {
+			 throw new Phonenumberalreadyexist("Phone Number already exists for another Contact");
 		}
 		if (file.isEmpty()) {
 			// If no new image is provided, keep the existing image or set a default one
@@ -183,17 +196,18 @@ public class Serviceimpl implements Serviceinterface {
 	}
 
 	@Override
-	public void delete(Userdetails user, Contact contact) {
+	public void deletecontact(Userdetails user, Contact contact) {
 		// TODO Auto-generated method stub
 
-		user.getContacts().remove(contact);
+		
 		String imageName = contact.getImage();
+		 cr.delete(contact);
 
-		// Update the user in the database to reflect the removal of the contact
-		ur.save(user);
+		    // Remove the contact from the user's contact list
+		    user.getContacts().remove(contact);
 
-		// Delete the contact from the database
-		cr.delete(contact);
+		    // Update the user in the database to reflect the removal of the contact
+		    ur.save(user);
 
 		// Get the image filename associated with the contact
 

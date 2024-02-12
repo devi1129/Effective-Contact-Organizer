@@ -112,6 +112,7 @@ public class MessageController {
     		{
     			String encodenew = SpringSecurityconfig.passwordEncoder().encode(newpassword);
 		        user.setPassword(encodenew);
+		        user.setResettoken(null);
 		        ur.save(user);
 		    
 		        

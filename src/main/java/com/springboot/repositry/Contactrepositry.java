@@ -35,4 +35,8 @@ public interface Contactrepositry extends JpaRepository<Contact, Long> {
 	   
 	   List<Contact> findAllByUser(Userdetails user);
 
+	Contact findByEmailAndUser(String email, Userdetails u);
+	
+	Contact findByPhoneAndUser(String phone, Userdetails u);
+
 }

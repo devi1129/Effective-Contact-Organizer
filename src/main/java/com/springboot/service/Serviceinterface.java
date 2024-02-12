@@ -17,7 +17,7 @@ public interface Serviceinterface {
 
 	void updatecontact(Contact contact, Userdetails u, MultipartFile file, Long cid);
 
-	void delete(Userdetails user, Contact contact);
+	void deletecontact(Userdetails user, Contact contact);
 
 	void saveuserprofile(Userdetails u, MultipartFile file);
 

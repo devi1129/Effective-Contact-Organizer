@@ -132,7 +132,7 @@ public class SettingsController {
 		List<Contact> findAllByUser = cr.findAllByUser(u);
 		
 		for (Contact contact : findAllByUser) {
-			s.delete(u, contact);
+			s.deletecontact(u, contact);
 		}
 		s.deleteuser(u);
 	

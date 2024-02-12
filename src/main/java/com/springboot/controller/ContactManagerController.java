@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.springboot.entity.Contact;
 import com.springboot.entity.Userdetails;
 import com.springboot.exception.Emailalreadyexistsexception;
+import com.springboot.exception.Phonenumberalreadyexist;
 import com.springboot.repositry.Contactrepositry;
 import com.springboot.repositry.Userrepositry;
 import com.springboot.service.Serviceinterface;
@@ -141,6 +142,11 @@ public class ContactManagerController {
 			m.addAttribute("contact", contact);
 			return "Addcontact";
 		}
+		catch (Phonenumberalreadyexist e) {
+			result.rejectValue("phone", "error.user", e.getMessage());
+			m.addAttribute("contact", contact);
+			return "Addcontact";
+		}
 	}
 	@GetMapping("/view-contacts/{currentpage}")
 	public String viewcontacts(@PathVariable("currentpage") Integer currentpage,Model m,Principal p)
@@ -182,12 +188,9 @@ public class ContactManagerController {
 	    if (optionalContact.isPresent()) {
 	        Contact contact = optionalContact.get();
 	        
-	        
-	        
 	        if (contact.getUser().getId().equals(user.getId())) {
-	        s.delete(user,contact);
-
-	      
+	            // Delete the contact
+	            s.deletecontact(user, contact);
 
 	            // Refresh the user in the session (if necessary)
 	            session.setAttribute("user", ur.findByEmail(username));
@@ -199,6 +202,7 @@ public class ContactManagerController {
 	    // Handle the case where the contact does not exist or does not belong to the user
 	    return "redirect:/users/view-contacts/" + currentpage;
 	}
+
 
 	@GetMapping("/edit-contact/{cid}/{currentpage}")
 	public String editcontact(@PathVariable Long cid,Model m,@PathVariable("currentpage") Integer currentpage)
@@ -233,6 +237,12 @@ public class ContactManagerController {
 //			return "redirect:/users/edit-contact/" + cid+"/"+currentpage;
 		} catch (Emailalreadyexistsexception e) {
 			result.rejectValue("email", "error.user", e.getMessage());
+			m.addAttribute("contact", contact);
+			return "edit-contact";
+		}
+		
+		catch (Phonenumberalreadyexist e) {
+			result.rejectValue("phone", "error.user", e.getMessage());
 			m.addAttribute("contact", contact);
 			return "edit-contact";
 		}
